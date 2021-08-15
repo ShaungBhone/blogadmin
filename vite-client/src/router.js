@@ -16,7 +16,8 @@ export default createRouter({
     {
       path: '/posts/:slug',
       name: 'post',
-      component: Post
+      component: Post,
+      props: true,
     }
   ]
 })
