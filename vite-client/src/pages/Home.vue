@@ -1,52 +1,6 @@
 <template>
   <section class="text-gray-700">
     <div class="container flex flex-col items-center px-5 py-8 mx-auto">
-      <div class="flex flex-col w-full mb-12 text-left">
-        <div class="w-full mx-auto lg:w-3/5">
-          <h1
-            class="
-              mx-auto
-              mb-12
-              text-2xl
-              font-semibold
-              leading-none
-              tracking-tighter
-              text-black
-              lg:text-3xl
-              title-font
-            "
-          >
-            A small headline to switch your visitors into users.
-          </h1>
-          <h2
-            class="
-              mx-auto
-              mb-4
-              text-xl
-              font-semibold
-              leading-none
-              tracking-tighter
-              text-black
-              title-font
-            "
-          >
-            A small headline to switch your visitors into users.
-          </h2>
-          <p
-            class="
-              mx-auto
-              text-base
-              font-medium
-              leading-relaxed
-              text-blueGray-700
-            "
-          >
-            Right. Say that again. No, no, George, look, it's just an act,
-            right? Okay, so 9:00 you're strolling through the parking lot, you
-            see us struggling.
-          </p>
-        </div>
-      </div>
       <div
         v-for="post in posts"
         :key="post.uuid"

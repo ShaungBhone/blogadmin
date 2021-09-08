@@ -10,5 +10,7 @@ import './index.css'
 //default api URL with axios
 import axios from 'axios'
 axios.defaults.baseURL = 'http://localhost:8000/'
+//sanctum
+axios.defaults.withCredentials = true;
 //main app
 createApp(App).use(router).mount('#app')
