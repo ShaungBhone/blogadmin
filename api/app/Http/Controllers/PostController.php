@@ -10,7 +10,11 @@ class PostController extends Controller
 {
     public function __invoke(Post $post)
     {
-        return PostResource::collection(Post::get());
+        return PostResource::collection(
+            Post::latest()
+                ->wherePublished(true)
+                ->get(),
+        );
     }
 
     public function show(Post $post)
