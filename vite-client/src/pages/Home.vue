@@ -103,7 +103,9 @@ import postsUse from "../api/postsUse";
 export default {
   setup() {
     const { posts, fetchPosts } = postsUse();
+
     onMounted(fetchPosts);
+
     return { posts };
   },
 };

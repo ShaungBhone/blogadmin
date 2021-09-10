@@ -3,8 +3,13 @@ import {
   createWebHistory
 } from "vue-router";
 
+import store from './store/store'
+
 import Home from './pages/Home.vue'
 import Post from './pages/Post.vue'
+import Login from './pages/auth/Login.vue'
+import Posts from './pages/admin/Posts.vue'
+import Edit from './pages/admin/Edit.vue'
 
 export default createRouter({
   history: createWebHistory(),
@@ -18,6 +23,40 @@ export default createRouter({
       name: 'post',
       component: Post,
       props: true,
+    },
+    {
+      path: '/admin/login',
+      name: 'admin.login',
+      component: Login,
+    },
+    {
+      path: '/admin/posts',
+      name: 'admin.posts',
+      component: Posts,
+      beforeEnter: (to, from, next) => {
+        if (!store.getters.authenticated) {
+          return next({
+            name: 'admin.login'
+          })
+        }
+
+        return next()
+      }
+    },
+    {
+      path: '/admin/posts/:slug/edit',
+      name: 'admin.posts.edit',
+      component: Edit,
+      props: true,
+      beforeEnter: (to, from, next) => {
+        if (!store.getters.authenticated) {
+          return next({
+            name: 'admin.login'
+          })
+        }
+
+        return next()
+      }
     }
   ]
 })

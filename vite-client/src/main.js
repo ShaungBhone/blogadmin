@@ -3,6 +3,7 @@ import {
 } from 'vue'
 import App from './App.vue'
 import router from './router'
+import store from './store/store'
 
 //css
 import './index.css'
@@ -13,4 +14,7 @@ axios.defaults.baseURL = 'http://localhost:8000/'
 //sanctum
 axios.defaults.withCredentials = true;
 //main app
-createApp(App).use(router).mount('#app')
+
+store.dispatch('authenticate').then(() => {
+  createApp(App).use(router).use(store).mount('#app')
+})
