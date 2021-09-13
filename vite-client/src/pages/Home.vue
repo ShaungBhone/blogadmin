@@ -72,7 +72,7 @@
           </svg>
         </div>
         <div class="flex-grow mt-6 text-center sm:text-left sm:mt-0">
-          <router-link :to="{ name: 'post', params: { slug: post.slug } }">
+          <router-link :to="{ name: 'post', params: { uuid: post.uuid } }">
             <h2
               class="
                 mb-8

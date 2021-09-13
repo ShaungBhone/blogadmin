@@ -23,7 +23,7 @@ class PostController extends Controller
     public function store()
     {
         $post = Post::create([
-            'title' => 'test post',
+            'title' => 'Create New Post',
         ]);
 
         return new PostResource($post);
@@ -32,5 +32,18 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         return new AdminPostEditResource($post);
+    }
+
+    public function update(Request $request, Post $post)
+    {
+        $validated = $request->validate([
+            'title' => 'required|max:255',
+            'slug' => 'string|unique:posts,slug,' . $post->id,
+            'body' => 'nullable',
+            'excerpt' => 'nullable',
+            'published' => 'boolean',
+        ]);
+
+        $post->update($request->only('title', 'body', 'excerpt', 'published'));
     }
 }

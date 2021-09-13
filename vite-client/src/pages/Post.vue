@@ -86,7 +86,7 @@ import { onMounted } from "vue";
 import postsUse from "../api/postsUse";
 export default {
   props: {
-    slug: {
+    uuid: {
       required: true,
       type: String,
     },
@@ -95,7 +95,7 @@ export default {
   setup(props) {
     const { post, fetchPost } = postsUse();
 
-    onMounted(fetchPost(props.slug));
+    onMounted(fetchPost(props.uuid));
 
     return {
       post,

@@ -19,12 +19,6 @@ export default createRouter({
       component: Home
     },
     {
-      path: '/posts/:slug',
-      name: 'post',
-      component: Post,
-      props: true,
-    },
-    {
       path: '/admin/login',
       name: 'admin.login',
       component: Login,
@@ -44,7 +38,7 @@ export default createRouter({
       }
     },
     {
-      path: '/admin/posts/:slug/edit',
+      path: '/admin/posts/:uuid/edit',
       name: 'admin.posts.edit',
       component: Edit,
       props: true,
@@ -57,6 +51,12 @@ export default createRouter({
 
         return next()
       }
+    },
+    {
+      path: '/posts/:uuid',
+      name: 'post',
+      component: Post,
+      props: true,
     }
   ]
 })

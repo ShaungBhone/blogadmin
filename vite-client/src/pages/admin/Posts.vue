@@ -79,7 +79,7 @@
                   >
                     Status
                   </th>
-                  <th
+                  <!-- <th
                     scope="col"
                     class="
                       px-6
@@ -92,7 +92,7 @@
                     "
                   >
                     Role
-                  </th>
+                  </th> -->
                   <th scope="col" class="relative px-6 py-3">
                     <span class="sr-only">Edit</span>
                   </th>
@@ -110,7 +110,7 @@
                         />
                       </div>
                       <div class="ml-4">
-                        <div class="text-sm font-medium text-gray-900">
+                        <div class="text-md font-medium text-gray-900">
                           Jane Cooper
                         </div>
                         <div class="text-sm text-gray-500">
@@ -120,14 +120,22 @@
                     </div>
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm text-gray-900">
+                    <div class="text-md text-gray-900">
                       {{ post.title }}
                     </div>
-                    <div
-                      v-if="post.excerpt.length != 10"
-                      class="text-sm text-gray-500"
-                    >
-                      {{ post.excerpt.substring(0, 20) + "..." }}
+                    <div>
+                      <div
+                        v-if="post.excerpt === null"
+                        class="text-sm text-yellow-700"
+                      >
+                        Your Excerpt
+                      </div>
+                      <div
+                        v-else-if="post.excerpt.length != 10"
+                        class="text-sm text-gray-500"
+                      >
+                        {{ post.excerpt.substring(0, 20) + "..." }}
+                      </div>
                     </div>
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap">
@@ -148,9 +156,9 @@
                       {{ !post.published ? "Unpublished" : "Published" }}
                     </span>
                   </td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <!-- <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                     Admin
-                  </td>
+                  </td> -->
                   <td
                     class="
                       px-6
@@ -160,8 +168,13 @@
                       font-medium
                     "
                   >
-                    <a href="#" class="text-blue-600 hover:text-blue-900"
-                      >Edit</a
+                    <router-link
+                      :to="{
+                        name: 'admin.posts.edit',
+                        params: { uuid: post.uuid },
+                      }"
+                      class="text-blue-600 hover:text-blue-900"
+                      >Edit</router-link
                     >
                     <a href="#" class="text-red-600 hover:text-red-900 ml-2"
                       >Delete</a
@@ -193,7 +206,7 @@ export default {
     const newPost = async () => {
       const post = await createPost();
 
-      router.replace({ name: "admin.posts.edit", params: { slug: post.slug } });
+      router.push({ name: "admin.posts.edit", params: { uuid: post.uuid } });
     };
 
     onMounted(fetchPosts);
